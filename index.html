@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+	<meta charset="utf8" />
+	<title>Angular sandbox</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<head>
+		<script type="text/javascript" src="js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="js/angular.min.js"></script>
+		<script type="text/javascript">
+			angular.module('sandbox', []);
+
+			var SandboxController = function($scope) {
+				$scope.msg = "Hello world!";
+			}
+
+		</script>
+	</head>
+	<body ng-app="sandbox" ng-controller="SandboxController">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12 hero-unit">
+					<h1>{{ msg }}</h1>
+				</div>
+			</div>
+		</div>
+		
+	</body>
+</html>
+			
+
