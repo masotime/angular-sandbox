@@ -8,14 +8,18 @@
 		<script type="text/javascript" src="js/angular.min.js"></script>
 		<script type="text/javascript">
 			var module = angular.module('sandbox', []);
+
 			module.directive('hero', function factory() {
 				var ddo = {
 					restrict: 'E',
+					replace: true,
+					transclude: true,
 					scope: {header: '@header'},
 					template:
 						'<div class="row-fluid">'+
 							'<div class="span12 hero-unit">'+
 								'<h1>{{ header }}</h1>'+
+								'<p ng-transclude></p>'+
 							'</div>'+
 						'</div>'
 				}
@@ -24,22 +28,27 @@
 			});
 
 			var SandboxController = function($scope) {
-				$scope.msg = "Hello world!";
+				$scope.title = "Hello world!";
+				$scope.msg = "This represents the body of the hero unit which is 'transcluded' into the component.  All that is needed is to add the ng-transclude directive on the element in the template!";
 			}
 
 		</script>
 	</head>
 	<body ng-app="sandbox" ng-controller="SandboxController">
 		<div class="container-fluid">
+			<hero header="{{ title }}">{{ msg }}</hero>
 			<div class="row-fluid">
-				<div class="span12 hero-unit">
-					<h1>{{ msg }}</h1>
-				</div>
+				<form>
+					<fieldset>
+						<!-- note that i don't even need to specify the content -->
+						<label>Title: <input ng-model="title" type="text"></input></label>
+						<label>Body: <textarea rows="5" class="span9" ng-model="msg"></textarea></label>
+					</fieldset>
+					
+				</form>
 			</div>
 		</div>
-		<div class="container-fluid">
-			<hero header="Pineapple"></hero>
-		</div>
+
 		
 	</body>
 </html>
